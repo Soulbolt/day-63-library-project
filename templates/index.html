@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>My Library</h1>
+    {% if not books %}
+      <p>Library is empty</p>
+    {% endif %}
     <ul>
       {% for book in books %}
       <li><h2>{{ book["title"] }} - {{ book["author"] }} - {{ book["rating"] }}/10</h2></li>
