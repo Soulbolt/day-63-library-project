@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" content='width=device-width, initial-scale=1' name='viewport'/>
+    <style>
+      body {
+        padding: 25px;
+        background-color: white;
+        color: black;
+        font-size: 25px;
+      }
+    
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+    </style>
     <title>Library</title>
   </head>
-  <body>
+  <body class="dark-mode">
     <h1>My Library</h1>
     {% if not books %}
       <p>Library is empty</p>

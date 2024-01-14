@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" content='width=device-width, initial-scale=1' name='viewport'/>
+        <style>
+          body {
+            padding: 25px;
+            background-color: white;
+            color: black;
+            font-size: 25px;
+          }
+        
+          .dark-mode {
+            background-color: black;
+            color: white;
+          }
+        </style>
     <title>Add Book</title>
   </head>
-  <body>
+  <body class="dark-mode">
     <form action="{{ url_for('add') }}" method="POST">
       <label>Book Name</label>
-      <input name="title" type="text" />
+      <input name="title" type="text" /><br>
       <label>Book Author</label>
-      <input name="author" type="text" />
+      <input name="author" type="text" /><br>
       <label>Rating</label>
       <input name="rating" type="text" />
       <button type="submit">Add Book</button>

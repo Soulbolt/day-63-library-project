@@ -2,16 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" content='width=device-width, initial-scale=1' name='viewport'/>
+        <style>
+            body {
+                padding: 25px;
+                background-color: white;
+                color: black;
+                font-size: 25px;
+            }
+        
+            .dark-mode {
+                background-color: black;
+                color: blanchedalmond;
+            }
+        </style>
     <title>Edit Rating</title>
 </head>
 
-<body>
+<body class="dark-mode">
     <form action="{{ url_for('edit', book_id=book['id']) }}" method="POST">
-        <h3><label>Book Name:</label>
-        {{ book["title"] }}</h3><br>
-        <h3><label>Current Rating</label>
-        {{ book["review"] }}</h3><br>
+        <label>Book Name:</label>
+        {{ book["title"] }}<br>
+        <label>Current Rating</label>
+        {{ book["review"] }}<br>
         <input type="text" name="review">
         <button type="submit"><b>Change Rating</b></button>
     </form>
