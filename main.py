@@ -6,7 +6,7 @@ from sqlalchemy import Integer, String, Float
 app = Flask(__name__)
 
 # :ost to store book objects
-all_books = []
+# all_books = []
 
 # Database
 class Base(DeclarativeBase):
@@ -33,18 +33,27 @@ class Book(db.Model):
 
 @app.route('/')
 def home():
+    with app.app_context():
+        result = db.session.execute(db.select(Book).order_by(Book.title))
+        all_books = [book for book in result.scalars()]
+        print(all_books)
     return render_template("index.html", books=all_books)
 
 
 @app.route("/add", methods={"GET", "POST"})
 def add():
     if request.method == "POST":
-        book = {
-            "title" : request.form.get("title"),
-            "author": request.form.get("author"),
-            "rating": int(request.form.get("rating"))
-        }
-        all_books.append(book)
+        with app.app_context():
+            new_book = Book(title=request.form.get("title"), author=request.form.get("author"), review=request.form.get("rating"))
+            db.session.add(new_book)
+            db.session.commit()
+            return redirect(url_for("home"))
+        # book = {
+        #     "title" : request.form.get("title"),
+        #     "author": request.form.get("author"),
+        #     "rating": float(request.form.get("rating"))
+        # }
+        # all_books.append(book)
     return render_template("add.html")
 
 
